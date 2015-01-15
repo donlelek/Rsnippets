@@ -1,4 +1,4 @@
-setwd("/Users/dprice/Documents/GIT/shiny-diamonds-demo")
+setwd("/Users/dprice/Documents/GIT/srsttx-app")
 
 # test app
 library(shiny)
