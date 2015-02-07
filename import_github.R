@@ -8,14 +8,15 @@ ts <- tbl_df(read.csv(text = x))
 
 # reshape dataset to long format to plot
 cases <- ts %>%
-  gather(., "C", "N", 3:18) %>%  
+  gather(., "C", "N", 3:18) %>%
   separate(., C, c("Type", "Country"), sep = "_") %>%
-  filter(N != "NA")
+  filter(N != "NA") 
 
-qplot(data     = cases,
-        x      = Day,
-        y      = N,
-        color  = Country,
-        group  = Country,
-        facets = . ~ Type,
-        geom   = "line")
+#plot the results
+qplot(data   = cases,
+      x      = Day,
+      y      = N,
+      color  = Country,
+      group  = Country,
+      facets = . ~ Type,
+      geom   = "line")
