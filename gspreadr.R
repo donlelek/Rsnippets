@@ -1,4 +1,6 @@
 # An API to access Google spreadsheets via R
+# source: https://github.com/jennybc/gspreadr
+
 library(gspreadr) ## Check that dplyr version is at least 0.4.0
 suppressMessages(library("dplyr")) 
 
