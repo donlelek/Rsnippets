@@ -2,8 +2,8 @@ library("igraph")
 
 # simulate dataset with three columns: from, to, weight
 set.seed(1828)
-mov <- data.frame(from = sample(LETTERS[1:10], 50, replace = TRUE, prob = runif(10)),
-                  to = sample(LETTERS[1:10], 50, replace = TRUE, prob = runif(10)),
+mov <- data.frame(from   = sample(LETTERS[1:10], 50, replace = TRUE, prob = runif(10)),
+                  to     = sample(LETTERS[1:10], 50, replace = TRUE, prob = runif(10)),
                   weight = 30*runif(50))
 
 # Load (DIRECTED) graph from data frame 
