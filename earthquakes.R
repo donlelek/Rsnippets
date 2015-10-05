@@ -71,7 +71,15 @@ quakes %>%
   group_by(country) %>% 
   tally() %>% 
   arrange(desc(n)) %>% 
-  DT::datatable()
+  View()
+
+# or counts of quakes over mag 8
+quakes %>% 
+  group_by(country) %>% 
+  filter(mag > 8) %>% 
+  tally() %>% 
+  arrange(desc(n)) %>% 
+  View()
 
 
 # a map
