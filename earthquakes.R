@@ -12,7 +12,9 @@
 # rms: The root-mean-square (RMS) travel time residual, in sec, using all weights. This parameter provides a measure of the fit of the observed arrival times to the predicted arrival times for this location. Smaller numbers reflect a better fit of the data. The value is dependent on the accuracy of the velocity model used to compute the earthquake location, the quality weights assigned to the arrival time data, and the procedure used to locate the earthquake.
 # net:The ID of a data contributor. Identifies the network considered to be the preferred source of information for this event.
 
+# you can install any of this using install.packages("name_of_library")
 # loading data manipulation/visualization libraries
+library(RCurl)
 library(readr)
 library(dplyr)
 library(magrittr)
@@ -23,14 +25,20 @@ library(parsedate)
 library(stringi)
 
 
-# first read the dataset
+# first read the dataset (point this to where you saved your dataset)
 quakes <- read_csv("~/Dropbox/Datasets/M6.0plus1900_20150922.csv") #doesn't pick up the date formats
+
 # force data types with `col_types`
 quakes <- read_csv("~/Dropbox/Datasets/M6.0plus1900_20150922.csv", col_types = "cddddcidddccccc")
 
+# or better still, grab directly from the USGS server
+quakes <- getURL("http://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=1900-01-01%2000:00:00&minmagnitude=6&endtime=2015-09-22%2023:59:59&orderby=time") %>% 
+  read_csv(., col_types = "cddddcidddccccc")
+
+
 # transform dates from character to posix (...slow)
 quakes %<>% 
-  mutate(time = parse_iso_8601(time),
+  mutate(time    = parse_iso_8601(time),
          updated = parse_iso_8601(updated))
 
 # the top 10
@@ -63,10 +71,11 @@ quakes %>%
   group_by(country) %>% 
   tally() %>% 
   arrange(desc(n)) %>% 
-  knitr::kable()
+  DT::datatable()
 
 
 # a map
+library(leaflet)
 leaflet() %>% 
   addTiles() %>% 
   addCircleMarkers(data = quakes,
