@@ -48,7 +48,8 @@ quakes %>%
   head(., n = 10)
 
 # ok, but I want names of the countries
-# using colon as separator; if extra colon merge, 
+# using colon as separator; 
+# if extra colon merge, 
 # if no colon, fill with left side
 quakes %<>%
   separate(place,
