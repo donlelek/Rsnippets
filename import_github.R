@@ -3,6 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 
+# Not sure why... but I have to getURL before assignment to a tbl_df
 x <- getURL("https://raw.githubusercontent.com/cmrivers/ebola/master/country_timeseries.csv")
 ts <- tbl_df(read.csv(text = x))
 

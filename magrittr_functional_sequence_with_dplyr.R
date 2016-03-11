@@ -1,15 +1,20 @@
+# todo: get the source for this
 # Let's say we're doing some analysis on the mtcars data..
 
 # displacement/cylinder for high horsepower cars 
 mtcars %>% 
   filter(hp > 100) %>% 
-  mutate(disp_cyl = disp/cyl) %>% filter(disp_cyl > 25) %>%
-  group_by(cyl,am) %>% summarise(mean_hp = mean(hp), mean_disp_cyl = mean(disp_cyl))
+  mutate(disp_cyl = disp/cyl) %>% 
+  filter(disp_cyl > 25) %>%
+  group_by(cyl,am) %>% 
+  summarise(mean_hp = mean(hp), mean_disp_cyl = mean(disp_cyl))
 
 # or displacement/cylinder for all cars
 mtcars %>%  
-  mutate(disp_cyl = disp/cyl) %>% filter(disp_cyl > 25) %>%
-  group_by(cyl,am) %>% summarise(mean_hp = mean(hp), mean_disp_cyl = mean(disp_cyl))
+  mutate(disp_cyl = disp/cyl) %>% 
+  filter(disp_cyl > 25) %>%
+  group_by(cyl,am) %>% 
+  summarise(mean_hp = mean(hp), mean_disp_cyl = mean(disp_cyl))
 
 # That's beautiful! Thanks dplyr!
 

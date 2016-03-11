@@ -12,15 +12,15 @@ library(ggplot2)
 #  and use example from ?state_choropleth
 data(df_pop_state)
 sc <- state_choropleth(
-  df_pop_state
-  , title="US 2012 State Population Estimates"
-  , legend="Population"
+  df_pop_state, 
+  title  = "US 2012 State Population Estimates", 
+  legend = "Population"
 )
 
 svgPanZoom(
   svgPlot(
-    show(sc)
+    show(sc),
     # will need to manually specify height/width
-    ,height = 9, width = 17
+    height = 9, width = 17
   )
 )

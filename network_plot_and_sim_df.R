@@ -15,9 +15,11 @@ plot(g,
      vertex.frame.color = "SkyBlue2",
      vertex.size = g[3],
      vertex.label.cex = 0.8,
-     edge.curved = TRUE,
+     edge.curved = F,
      edge.arrow.size = 0.3)
 
 # 3D plot
+library(rgl)
+
 rglplot(g,
         vertex.size = g[3]) 

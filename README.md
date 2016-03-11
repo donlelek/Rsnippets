@@ -1,4 +1,4 @@
 Rsnippets
 =========
 
-A collection of R snippets found on the web
+A collection of R snippets found or inspired by articles on the web.  

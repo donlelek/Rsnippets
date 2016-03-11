@@ -28,9 +28,8 @@ j <- as.data.frame(Dens$v) %>%
   mutate(x = rep(Dens$xcol, times = 128))
 
 # and plot the results
-ggplot(data = j, 
-       aes(x = x, y = y, fill = value)) +
-  # plot data to raster
-  geom_raster() +
-  # cool color
-  scale_fill_distiller(palette = "Spectral")
+ggplot(data = j, aes(x = x, y = y, fill = value)) +
+       # plot data to raster
+       geom_raster() +
+       # cool color
+       scale_fill_distiller(palette = "Spectral")
