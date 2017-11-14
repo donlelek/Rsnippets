@@ -2,9 +2,10 @@
 library(ggplot2)
 library(ggfortify)
 library(maptools) # for the density function
+library(viridis) # for viridis color scales
 
 # generate a dataframe for plotting
-df <- data.frame(x = runif(500), y = rnorm(500))
+df <- data.frame(x = rnorm(500), y = rnorm(500))
 
 # generate a density object
 df.ppp <- as(SpatialPoints(df), "ppp")
@@ -32,4 +33,7 @@ ggplot(data = j, aes(x = x, y = y, fill = value)) +
        # plot data to raster
        geom_raster() +
        # cool color
-       scale_fill_distiller(palette = "Spectral")
+       scale_fill_viridis(option = "magma") +
+       # theme adjustments
+       theme_minimal() +
+       theme(panel.grid = element_blank())
