@@ -1,10 +1,10 @@
-library(dplyr)
-library(RSQLite)
-library(RSQLite.extfuns)
+library(tidyverse)
+library(DBI)
 
 # Set up handles to database tables on app start
-db <- src_sqlite("~/Dropbox/Datasets/movies.db")
-omdb <- tbl(db, "omdb")
+db       <- dbConnect(drv    = RSQLite::SQLite(),
+                      dbname = "~/GDrive/Datasets/movies.db")
+omdb     <- tbl(db, "omdb")
 tomatoes <- tbl(db, "tomatoes")
 
 # Join tables, filtering out those with <10 reviews, and select specified columns
@@ -14,4 +14,4 @@ all_movies <- inner_join(omdb, tomatoes, by = "ID") %>%
            Rating = Rating.y, Meter, Reviews, Fresh, Rotten, userMeter, userRating, userReviews,
            BoxOffice, Production)
 
-movies <- tbl_df(data.frame(all_movies))
+movies <- as_tibble(all_movies)
